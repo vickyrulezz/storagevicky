@@ -18,5 +18,3 @@ var server = http.createServer(function(req, resp){
     }
   });
 });
-
-server.listen(8081, '127.0.0.1');

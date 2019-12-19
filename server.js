@@ -12,7 +12,7 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
 	;
 	
 app.get('/', function (req, res) {
-res.render('index');
+res.render('index.html');
 });
 
 

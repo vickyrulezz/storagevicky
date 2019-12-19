@@ -57,6 +57,15 @@ function myFunction() {
 }
 </script>
 
+<script>
+function validateForm() {
+  var x = document.forms["searchProduct"]["search"].value;
+  if (x == "") {
+    alert("Kindly provide input product name to search !!!");
+    return false;
+  }
+} 
+</script>
 
 </head>
 
@@ -64,9 +73,9 @@ function myFunction() {
 
 <h2>Search product</h2>
 
-<form class="example" action="/action_page.php">
+<form name="searchProduct" class="example" action="/action_page.php">
   <input type="text" placeholder="Search.." name="search">
-  <button type="submit" onclick = "myFunction()"><i class="fa fa-search"></i></button>
+  <button type="submit" onclick = "validateForm()"><i class="fa fa-search"></i></button>
 </form>
 
 </body>

@@ -1,12 +1,9 @@
-var express = require('express'),
-    app     = express(),
-    morgan  = require('morgan');
-	
-Object.assign=require('object-assign')
+const express = require('express');
+const app = express();
+const path = require('path');
+const router = express.Router();
 
-app.engine('html', require('ejs').renderFile);
-app.use(morgan('combined'))
-
-app.get('/', function (req, res) {
-res.render('index');
+router.get('/',function(req,res){
+  res.sendFile(path.join(__dirname+'/index.html'));
+  //__dirname : It will resolve to your project folder.
 });

@@ -1,3 +1,5 @@
+
+const http = require('http');
 const mysql = require('mysql');
 const connection = mysql.createConnection({
   host: 'custom-mysql.gamification.svc.cluster.local',

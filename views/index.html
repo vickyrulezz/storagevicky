@@ -72,7 +72,7 @@ function myFunction() {
 }
 </script>
 	
-<script src="fetch_data.js"></script> 
+<!--script src="fetch_data.js"--/>
 
 <script>
 function validateForm() {
@@ -81,10 +81,10 @@ function validateForm() {
     alert("Kindly provide input product name to search !!!");
     return false;
   }
-else
- {
-     setResHtml();
-  }
+//else
+// {
+//     setResHtml();
+//  }
 } 
 </script>
 
@@ -133,7 +133,7 @@ else
 
 			<form name="searchProduct" class="example">
 			  <input type="text" placeholder="Search.." name="search">
-			  <button type="submit" onclick = "setResHtml()"><i class="fa fa-search"></i></button>
+			  <button type="submit" onclick = "/fetch_data"><i class="fa fa-search"></i></button>
 			</form>
 
           </div>

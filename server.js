@@ -22,6 +22,11 @@ app.get('/', function (req, res) {
      res.render('index.html', { root : VIEWS });
 });
 
+// Route to pages
+app.get('/home', function (req, res) {
+     res.render('index.html', { root : VIEWS });
+});
+
 app.get("/contact", function (req, res) {
   res.sendFile('contact.html', { root : VIEWS });
  });
@@ -30,6 +35,25 @@ app.get("/about", function (req, res) {
   res.sendFile('about.html', { root : VIEWS });
 });
 
+// Route to css stylesheet and images
+app.get("/animate", function (req, res) {
+  res.sendFile('animate.css, { root : VIEWS });
+});
+app.get("/bootstrap", function (req, res) {
+  res.sendFile('bootstrap.css, { root : VIEWS });
+});
+app.get("/owl.carousel.min", function (req, res) {
+  res.sendFile('owl.carousel.min.css, { root : VIEWS });
+});
+app.get("/style", function (req, res) {
+  res.sendFile('style.css, { root : VIEWS });
+});
+app.get("/background", function (req, res) {
+  res.sendFile('background.css, { root : VIEWS });
+});
+
+	
+// Port Listen
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
 

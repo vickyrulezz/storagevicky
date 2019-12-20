@@ -1,6 +1,4 @@
 
-var methods = {};
-
 const http = require('http');
 const mysql = require('mysql');
 
@@ -22,11 +20,11 @@ connection.connect((err) => {
 //html string that will be send to browser
 var reo ='<html><head><title>Node.js MySQL Select</title></head><body><h1>Node.js MySQL Select</h1>{${table}}</body></html>';
 
+let sql ='select XXSKU.ITEM_NUMBER SKU, XXSKU.DESCRIPTION,XXPR.LIST_PRICE from XXIBM_PRODUCT_SKU XXSKU,XXIBM_PRODUCT_PRICING XXPR,XXIBM_PRODUCT_STYLE XXPS,XXIBM_PRODUCT_CATALOGUE XXPC where XXSKU.ITEM_NUMBER = XXPR.ITEM_NUMBER and XXSKU.STYLE_ITEM = XXPS.ITEM_NUMBER AND XXSKU.CATALOGUE_CATEGORY=XXPC.COMMODITY';
 
 //sets and returns html table with results from sql select
 //Receives sql query and callback function to return the table
-methods.setResHtml = function(sql,cb){
-//function setResHtml(sql, cb){
+function setResHtml(sql, cb){
 	alert("we are in setResHtml");
   pool.getConnection((err, con)=>{
     if(err) throw err;
@@ -49,8 +47,6 @@ methods.setResHtml = function(sql,cb){
   });
 }
 
-let sql ='select XXSKU.ITEM_NUMBER SKU, XXSKU.DESCRIPTION,XXPR.LIST_PRICE from XXIBM_PRODUCT_SKU XXSKU,XXIBM_PRODUCT_PRICING XXPR,XXIBM_PRODUCT_STYLE XXPS,XXIBM_PRODUCT_CATALOGUE XXPC where XXSKU.ITEM_NUMBER = XXPR.ITEM_NUMBER and XXSKU.STYLE_ITEM = XXPS.ITEM_NUMBER AND XXSKU.CATALOGUE_CATEGORY=XXPC.COMMODITY';
-
 //create the server for browser access
 const server = http.createServer((req, res)=>{
   setResHtml(sql, resql=>{
@@ -60,9 +56,6 @@ const server = http.createServer((req, res)=>{
     res.end();
   });
 });
-
-
-exports.data = methods;
 
 //server.listen(8080, ()=>{
 server.listen(port, ()=>{

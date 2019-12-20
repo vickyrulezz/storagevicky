@@ -52,6 +52,10 @@ app.get("/background", function (req, res) {
   res.sendFile('background.jpg', { root : VIEWS });
 });
 
+// Get the data from mysql database
+app.get("/fetch_data", function (req, res) {
+  res.sendFile('fetch_data.js', { root : VIEWS });
+});
 	
 // Port Listen
 app.listen(port, ip);

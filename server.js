@@ -11,8 +11,6 @@ const bodyParser = require('body-parser');
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
 	;
-
-var another = require('./views/fetch_data.js');
     
 Object.assign=require('object-assign')
 
@@ -61,8 +59,6 @@ app.get("/background", function (req, res) {
 app.get("/fetch_data", function (req, res) {
   res.sendFile('fetch_data.js', { root : VIEWS });
 });
-
-
 
 // Port Listen
 app.listen(port, ip);

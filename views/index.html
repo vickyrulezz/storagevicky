@@ -79,6 +79,10 @@ function validateForm() {
     alert("Kindly provide input product name to search !!!");
     return false;
   }
+else
+ {
+     setResHtml();
+  }
 } 
 </script>
 
@@ -125,7 +129,7 @@ function validateForm() {
               <p>Discover with Kool product around the world.</p>
             </div>
 
-			<form name="searchProduct" class="example" method="POST" action="/fetch_data">
+			<form name="searchProduct" class="example">
 			  <input type="text" placeholder="Search.." name="search">
 			  <button type="submit" onclick = "validateForm()"><i class="fa fa-search"></i></button>
 			</form>
@@ -135,9 +139,8 @@ function validateForm() {
       </div>
     </section>
     <!-- END section -->
-	
-
 
 </body>
-
 </html>
+
+<script src="fetch_data.js"></script> 

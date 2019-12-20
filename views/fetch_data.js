@@ -1,3 +1,6 @@
+
+var methods = {};
+
 const http = require('http');
 const mysql = require('mysql');
 
@@ -19,9 +22,11 @@ connection.connect((err) => {
 //html string that will be send to browser
 var reo ='<html><head><title>Node.js MySQL Select</title></head><body><h1>Node.js MySQL Select</h1>{${table}}</body></html>';
 
+
 //sets and returns html table with results from sql select
 //Receives sql query and callback function to return the table
-function setResHtml(sql, cb){
+methods.setResHtml = function(sql,cb){
+//function setResHtml(sql, cb){
 	alert("we are in setResHtml");
   pool.getConnection((err, con)=>{
     if(err) throw err;

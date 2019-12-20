@@ -22,6 +22,7 @@ var reo ='<html><head><title>Node.js MySQL Select</title></head><body><h1>Node.j
 //sets and returns html table with results from sql select
 //Receives sql query and callback function to return the table
 function setResHtml(sql, cb){
+	alert("we are in setResHtml");
   pool.getConnection((err, con)=>{
     if(err) throw err;
 

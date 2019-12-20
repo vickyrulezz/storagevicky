@@ -62,6 +62,8 @@ const server = http.createServer((req, res)=>{
 });
 
 
+exports.data = methods;
+
 //server.listen(8080, ()=>{
 server.listen(port, ()=>{
   console.log('Server running at //localhost:8080/');

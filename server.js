@@ -5,6 +5,8 @@ var express = require('express'),
 
 var path = require('path');
 const VIEWS = path.join(__dirname, 'views');
+
+const bodyParser = require('body-parser');
 	
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
@@ -16,6 +18,7 @@ app.set('views', VIEWS);
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: true })); 
 
 
 app.get('/', function (req, res) {
@@ -53,10 +56,12 @@ app.get("/background", function (req, res) {
 });
 
 // Get the data from mysql database
-app.get("/fetch_data", function (req, res) {
+app.post("/fetch_data", function (req, res) {
   res.sendFile('fetch_data.js', { root : VIEWS });
 });
-	
+
+
+
 // Port Listen
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);

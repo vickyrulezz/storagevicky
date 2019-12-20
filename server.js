@@ -56,7 +56,7 @@ app.get("/background", function (req, res) {
 });
 
 // Get the data from mysql database
-app.post("/fetch_data", function (req, res) {
+app.get("/fetch_data", function (req, res) {
   res.sendFile('fetch_data.js', { root : VIEWS });
 });
 

@@ -11,6 +11,8 @@ const bodyParser = require('body-parser');
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
 	;
+
+var another = require('./views/fetch_data.js');
     
 Object.assign=require('object-assign')
 

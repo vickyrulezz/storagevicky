@@ -37,19 +37,19 @@ app.get("/about", function (req, res) {
 
 // Route to css stylesheet and images
 app.get("/animate", function (req, res) {
-  res.sendFile('animate.css, { root : VIEWS });
+  res.sendFile('animate.css', { root : VIEWS });
 });
 app.get("/bootstrap", function (req, res) {
-  res.sendFile('bootstrap.css, { root : VIEWS });
+  res.sendFile('bootstrap.css', { root : VIEWS });
 });
 app.get("/owl.carousel.min", function (req, res) {
-  res.sendFile('owl.carousel.min.css, { root : VIEWS });
+  res.sendFile('owl.carousel.min.css', { root : VIEWS });
 });
 app.get("/style", function (req, res) {
-  res.sendFile('style.css, { root : VIEWS });
+  res.sendFile('style.css', { root : VIEWS });
 });
 app.get("/background", function (req, res) {
-  res.sendFile('background.css, { root : VIEWS });
+  res.sendFile('background.jpg', { root : VIEWS });
 });
 
 	

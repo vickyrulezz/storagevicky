@@ -75,4 +75,8 @@ const server = http.createServer((req, res)=>{
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
 
+server.listen(port, ()=>{
+  console.log('Server running at //localhost:8080/');
+});
+
 module.exports = app ;

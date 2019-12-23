@@ -18,7 +18,7 @@ connection.connect((err) => {
 });
 
 //html string that will be send to browser
-//var reo ='<html><head><title>Node.js MySQL Select</title></head><body><h1>Node.js MySQL Select</h1>{${table}}</body></html>';
+var reo ='<html><head><title>Node.js MySQL Select</title></head><body><h1>Node.js MySQL Select</h1>{${table}}</body></html>';
 
 let sql ='select XXSKU.ITEM_NUMBER SKU, XXSKU.DESCRIPTION,XXPR.LIST_PRICE from XXIBM_PRODUCT_SKU XXSKU,XXIBM_PRODUCT_PRICING XXPR,XXIBM_PRODUCT_STYLE XXPS,XXIBM_PRODUCT_CATALOGUE XXPC where XXSKU.ITEM_NUMBER = XXPR.ITEM_NUMBER and XXSKU.STYLE_ITEM = XXPS.ITEM_NUMBER AND XXSKU.CATALOGUE_CATEGORY=XXPC.COMMODITY';
 
@@ -46,6 +46,22 @@ function setResHtml(sql, cb){
     });
   });
 }
+
+module.exports = async () => 
+{
+    try {
+        let extracted_data;
+            extracted_data = await setResHtml(sql, resql=>{		  
+		    reo = reo.replace('{${table}}', resql);
+	    });
+        }
+        return extracted_data; 
+catch (ex) 
+    {
+        throw ex;
+    }
+}
+
 
 /*
 //create the server for browser access

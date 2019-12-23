@@ -47,10 +47,12 @@ function setResHtml(sql, cb){
   });
 }
 
-module.exports = async () 
+//module.exports = async () 
+module.exports = function extract_data()
 {
         let extracted_data;
-            extracted_data = await setResHtml(sql, resql=>
+            //extracted_data = await setResHtml(sql, resql=>
+		extracted_data = setResHtml(sql, resql=>
 			{		  
 				reo = reo.replace('{${table}}', resql);
 			});

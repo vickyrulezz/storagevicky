@@ -72,6 +72,10 @@ app.post('/fetch_data', function(req, res) {
     let data = {
         response: 'You sent: ' + req.body.message
     };
+    // Do something, like query a database or save data
+
+    res.status(200).send(data);
+});
 
 // Port Listen
 app.listen(port, ip);

@@ -49,17 +49,13 @@ function setResHtml(sql, cb){
 
 module.exports = async () => 
 {
-    try {
         let extracted_data;
-            extracted_data = await setResHtml(sql, resql=>{		  
-		    reo = reo.replace('{${table}}', resql);
-	    });
-        }
+            extracted_data = await setResHtml(sql, resql=>
+			{		  
+				reo = reo.replace('{${table}}', resql);
+			});
+
         return extracted_data; 
-catch (ex) 
-    {
-        throw ex;
-    }
 }
 
 

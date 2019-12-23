@@ -57,7 +57,8 @@ app.get("/background", function (req, res) {
 
 // Get the data from mysql database
 app.get("/fetch_data", function (req, res) {
-  res.render('fetch_data.js', { root : VIEWS });
+  //res.sendFile('fetch_data.js', { root : VIEWS });
+  res.write('Hello World !!', { root : VIEWS });
 });
 
 // Port Listen

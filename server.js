@@ -62,7 +62,7 @@ app.get("/background", function (req, res) {
 app.get("/fetch_data", function (req, res) {
   //res.sendFile('fetch_data.js', { root : VIEWS });
   //res.send('Hello World !!', { root : VIEWS });
- let product_data = fetch_data();
+ let product_data = fetch_data_sql.fetch_data();
 //create the server for browser access
 const server = http.createServer((req, res)=>{
     res.writeHead(200, {'Content-Type':'text/html; charset=utf-8'});

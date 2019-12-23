@@ -3,6 +3,8 @@ var express = require('express'),
     app     = express(),
     morgan  = require('morgan');
 
+const http = require('http');
+
 var path = require('path');
 const VIEWS = path.join(__dirname, 'views');
 var mysql     =    require('mysql');

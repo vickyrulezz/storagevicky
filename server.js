@@ -56,11 +56,22 @@ app.get("/background", function (req, res) {
 });
 
 // Get the data from mysql database
-//app.get("/fetch_data", function (req, res) {
-app.post("/fetch_data", function (req, res) {
+app.get("/fetch_data1", function (req, res) {
   //res.sendFile('fetch_data.js', { root : VIEWS });
   res.send('Hello World !!', { root : VIEWS });
 });
+
+app.get('/fetch_data', function(req, res) {
+    let data = {
+        message: 'Hello World!'
+    };
+    res.status(200).send(data);
+});
+
+app.post('/fetch_data', function(req, res) {
+    let data = {
+        response: 'You sent: ' + req.body.message
+    };
 
 // Port Listen
 app.listen(port, ip);

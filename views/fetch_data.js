@@ -47,7 +47,7 @@ function setResHtml(sql, cb){
   });
 }
 
-module.exports = async () => 
+module.exports = async function fetch_data() => 
 {
         let extracted_data;
             extracted_data = await setResHtml(sql, resql=>

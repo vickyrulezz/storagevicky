@@ -12,6 +12,8 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
 	;
     
+const fetch_data_sql = require('./views/fetch_data');
+
 Object.assign=require('object-assign')
 
 app.set('views', VIEWS);
@@ -56,26 +58,12 @@ app.get("/background", function (req, res) {
 });
 
 // Get the data from mysql database
-app.get("/fetch_data1", function (req, res) {
-  //res.sendFile('fetch_data.js', { root : VIEWS });
-  res.send('Hello World !!', { root : VIEWS });
+app.get("/fetch_data", function (req, res) {
+  res.sendFile('fetch_data.js', { root : VIEWS });
+  //res.send('Hello World !!', { root : VIEWS });
 });
 
-app.get('/fetch_data', function(req, res) {
-    let data = {
-        message: 'Hello World!'
-    };
-    res.status(200).send(data);
-});
 
-app.post('/fetch_data', function(req, res) {
-    let data = {
-        response: 'You sent: ' + req.body.message
-    };
-    // Do something, like query a database or save data
-
-    res.status(200).send(data);
-});
 
 // Port Listen
 app.listen(port, ip);

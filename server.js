@@ -13,7 +13,7 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
 	;
     
-const fetch_data_sql = await require('./views/fetch_data');
+const fetch_data_sql = require('./views/fetch_data');
 
 Object.assign=require('object-assign')
 

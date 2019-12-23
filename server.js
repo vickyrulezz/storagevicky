@@ -5,6 +5,7 @@ var express = require('express'),
 
 var path = require('path');
 const VIEWS = path.join(__dirname, 'views');
+var mysql     =    require('mysql');
 
 const bodyParser = require('body-parser');
 	

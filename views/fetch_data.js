@@ -31,7 +31,7 @@ const pool = mysql.createPool({
 //html string that will be send to browser
 var resulthtml ='<html><head><title>Node.js MySQL Select</title></head><body><h1>Node.js MySQL Select</h1>{${table}}</body></html>';
 
-let sql ='select XXSKU.ITEM_NUMBER SKU, XXSKU.DESCRIPTION,XXPR.LIST_PRICE from XXIBM_PRODUCT_SKU XXSKU,XXIBM_PRODUCT_PRICING XXPR,XXIBM_PRODUCT_STYLE XXPS,XXIBM_PRODUCT_CATALOGUE XXPC where XXSKU.ITEM_NUMBER = XXPR.ITEM_NUMBER and XXSKU.STYLE_ITEM = XXPS.ITEM_NUMBER AND XXSKU.CATALOGUE_CATEGORY=XXPC.COMMODITY';
+var sql ='select XXSKU.ITEM_NUMBER SKU, XXSKU.DESCRIPTION,XXPR.LIST_PRICE from XXIBM_PRODUCT_SKU XXSKU,XXIBM_PRODUCT_PRICING XXPR,XXIBM_PRODUCT_STYLE XXPS,XXIBM_PRODUCT_CATALOGUE XXPC where XXSKU.ITEM_NUMBER = XXPR.ITEM_NUMBER and XXSKU.STYLE_ITEM = XXPS.ITEM_NUMBER AND XXSKU.CATALOGUE_CATEGORY=XXPC.COMMODITY';
 
 	console.log(sql);
 
@@ -80,10 +80,11 @@ module.exports = {
   
 	pool.getConnection((err, con)=>{
     if(err) throw err;
-	
+	console.log("Connected !!!');
+		    
     con.query(sql, (err, res, cols)=>{
       if(err) throw err;
-		console.log("Connected and executing query");
+		console.log("Executing query !!!");
 	    
       var table =''; //to store html table
 

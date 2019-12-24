@@ -68,13 +68,11 @@ app.get("/fetch_data", function (req, res) {
 //console.log(fetch_data_sql.extract_data());
 var fetch_data_sql = require('./views/test_sql.js');
 fetch_data_sql.extract_data();
-//console.log(fetch_data_sql);
-
-res.sendFile('result.html');	
-
+	
 //create the server for browser access
 const server = http.createServer((req, res)=>{
    //if (req.url == '/fetch_data'){
+	console.log('Creating Server .....');
     res.writeHead(200, {'Content-Type':'text/html; charset=utf-8'});
     res.write(fetch_data_sql, 'utf-8');
     res.end();
@@ -87,9 +85,5 @@ const server = http.createServer((req, res)=>{
 // Port Listen
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
-
-//server.listen(port, ()=>{
-//  console.log('Server running at //localhost:8080/');
-//});
 
 module.exports = app ;

@@ -7,6 +7,9 @@ const connection = mysql.createConnection({
   database: 'sampledb'
 });
 
+// include node fs module
+var fs = require('fs'); 
+
 //html string that will be send to browser
 var resulthtml ='<html><head><title>Kool App - Andromeda Product Page</title></head><body><h1>Product Details</h1>{${table}}</body></html>';
 
@@ -18,6 +21,7 @@ console.log(sql);
 
 var setResHtml;
 var extract_data;
+var createFile;
 
 module.exports = {
 	
@@ -70,14 +74,25 @@ module.exports = {
 		});
 	}
 	,
+	createFile:
+		function(req, res, next) {
+		// write data to file sample.html
+		fs.writeFile('result.html',resulthtml,
+		// callback function that is called after writing file is done
+			function(err) { 
+				if (err) throw err;
+				// if no error
+				console.log("Data is written to file successfully.");
+			}
+		}
+	,
 	extract_data: 
 	function(req, res, next) {
 		console.log("We are in extract_data");
 		module.exports.setResHtml();
+		module.exports.createFile();
 		console.log("extract_data ends !!!!");
 		//return resulthtml;
+	}
 	
-	
-  }
-
- }
+} 

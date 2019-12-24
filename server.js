@@ -74,7 +74,7 @@ fetch_data_sql.extract_data();
 const server = http.createServer((req, res)=>{
    //if (req.url == '/fetch_data'){
     res.writeHead(200, {'Content-Type':'text/html; charset=utf-8'});
-    res.write(fetch_data_sql.extract_data(), 'utf-8');
+    res.write(fetch_data_sql, 'utf-8');
     res.end();
    //}
 	});

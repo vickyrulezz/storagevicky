@@ -58,7 +58,7 @@ module.exports = {
 					console.log(resulthtml);
 					//return cb(resulthtml);
 					
-					return resulthtml;
+					//return resulthtml;
 		
 					connection.end();
 		  }
@@ -77,7 +77,9 @@ module.exports = {
 		console.log("We are in extract_data");
 		module.exports.setResHtml();
 		console.log("extract_data ends !!!!");
-		
+		return resulthtml;
+	
+	
   }
 
  }

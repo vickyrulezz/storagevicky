@@ -12,7 +12,7 @@ var resulthtml ='<html><head><title>Kool App - Andromeda Product Page</title></h
 
 var commodity_name = process.argv[2]; // pass argument to query
 var sql = '';
-
+var table = '';
 console.log(sql);
 
 

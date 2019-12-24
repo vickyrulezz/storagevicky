@@ -37,6 +37,7 @@ let sql ='select XXSKU.ITEM_NUMBER SKU, XXSKU.DESCRIPTION,XXPR.LIST_PRICE from X
 
 //sets and returns html table with results from sql select
 //Receives sql query and callback function to return the table
+/*
 function setResHtml(sql, cb){
 	console.log("We are in setResHtml");
   
@@ -67,7 +68,41 @@ pool.getConnection((err, con)=>{
 module.exports = {
 	setResHtml : setResHtml
 }
+*/
+
+module.exports = {
+
+  setResHtml: function (sql, cb){
+	console.log("We are in setResHtml");
+  
+	pool.getConnection((err, con)=>{
+    if(err) throw err;
 	
+    con.query(sql, (err, res, cols)=>{
+      if(err) throw err;
+		console.log("Connected and executing query");
+	    
+      var table =''; //to store html table
+
+      //create html table with data from res.
+      for(var i=0; i<res.length; i++){
+        table +='<tr><td>'+ (i+1) +'</td><td>'+ res[i].SKU +'</td><td>'+ res[i].DESCRIPTION +'</td></tr>';
+      }
+      table ='<table border="1"><tr><th>Nr.</th><th>Name</th><th>Address</th></tr>'+ table +'</table>';
+
+      con.release(); //Done with mysql connection
+
+	resulthtml = resulthtml.replace('{${table}}', table);
+      //return cb(table);
+	   return cb(resulthtml);
+    });
+  });
+}
+	
+  extract_data: function(req, res, next) {
+    module.exports.setResHtml();
+  }
+}
 
 //module.exports = async () 
 /*

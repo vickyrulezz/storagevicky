@@ -73,7 +73,7 @@ fetch_data_sql.extract_data();
 //create the server for browser access
 const server = http.createServer((req, res)=>{
     res.writeHead(200, {'Content-Type':'text/html; charset=utf-8'});
-    res.write(fetch_data_sql, 'utf-8');
+    res.write('Hello World !!!', 'utf-8');
     res.end();
 	});
 });

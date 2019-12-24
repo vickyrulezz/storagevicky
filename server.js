@@ -69,16 +69,15 @@ app.get("/fetch_data", function (req, res) {
 var fetch_data_sql = require('./views/test_sql.js');
 fetch_data_sql.extract_data();
 //console.log(fetch_data_sql);
-//create the server for browser access
 
-/*
+//create the server for browser access
 const server = http.createServer((req, res)=>{
     res.writeHead(200, {'Content-Type':'text/html; charset=utf-8'});
     res.write(fetch_data_sql, 'utf-8');
     res.end();
 	});
 });
-*/
+
 // Port Listen
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);

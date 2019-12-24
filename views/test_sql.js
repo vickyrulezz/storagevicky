@@ -11,17 +11,8 @@ const connection = mysql.createConnection({
 //html string that will be send to browser
 var resulthtml ='<html><head><title>Kool App - Andromeda Product Page</title></head><body><h1>Product Details</h1>{${table}}</body></html>';
 
-let commodity_name = process.argv[2]; // pass argument to query
-let sql = `select XXPC.COMMODITY_NAME PRODUCT_TYPE, XXSKU.ITEM_NUMBER SKU, XXPS.BRAND ,XXSKU.DESCRIPTION,XXSKU.LONG_DESCRIPTION, 
-XXPR.LIST_PRICE,XXSKU.SKU_ATTRIBUTE_VALUE1 SIZE,XXSKU.SKU_ATTRIBUTE_VALUE2 COLOR,XXPR.IN_STOCK from 
-XXIBM_PRODUCT_SKU XXSKU,
-XXIBM_PRODUCT_PRICING XXPR,
-XXIBM_PRODUCT_STYLE XXPS,
-XXIBM_PRODUCT_CATALOGUE XXPC
-where XXSKU.ITEM_NUMBER = XXPR.ITEM_NUMBER
-and XXSKU.STYLE_ITEM = XXPS.ITEM_NUMBER
-AND XXSKU.CATALOGUE_CATEGORY=XXPC.COMMODITY`
-//AND XXPC.COMMODITY_NAME = '` + commodity_name +`'` ;
+var commodity_name = process.argv[2]; // pass argument to query
+var sql = '';
 
 console.log(sql);
 
@@ -39,6 +30,13 @@ module.exports = {
 		  console.log('Connected!');
 		});
 		
+		sql = `select XXPC.COMMODITY_NAME PRODUCT_TYPE, XXSKU.ITEM_NUMBER SKU, XXPS.BRAND ,XXSKU.DESCRIPTION,XXSKU.LONG_DESCRIPTION, 
+			XXPR.LIST_PRICE,XXSKU.SKU_ATTRIBUTE_VALUE1 SIZE,XXSKU.SKU_ATTRIBUTE_VALUE2 COLOR,XXPR.IN_STOCK from 
+			XXIBM_PRODUCT_SKU XXSKU,XXIBM_PRODUCT_PRICING XXPR,XXIBM_PRODUCT_STYLE XXPS,XXIBM_PRODUCT_CATALOGUE XXPC
+			where XXSKU.ITEM_NUMBER = XXPR.ITEM_NUMBER
+			and XXSKU.STYLE_ITEM = XXPS.ITEM_NUMBER
+			AND XXSKU.CATALOGUE_CATEGORY=XXPC.COMMODITY`
+			//AND XXPC.COMMODITY_NAME = '` + commodity_name +`'` ;
 		connection.query(sql, function(err, results, fields) {
 		  if (!err){
 			//console.log('The solution is: ', results);

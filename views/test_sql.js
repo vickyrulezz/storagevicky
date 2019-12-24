@@ -55,9 +55,9 @@ module.exports = {
 					
 					resulthtml = resulthtml.replace('{${table}}', table);
 					
-					console.log(resulthtml);
+					//console.log(resulthtml);
 					//return cb(resulthtml);
-		
+					return resulthtml;
 					connection.end();
 		  }
 		  else

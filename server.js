@@ -63,8 +63,10 @@ app.get("/background", function (req, res) {
 // Get the data from mysql database
 app.get("/fetch_data", function (req, res) {
   //res.sendFile('fetch_data.js', { root : VIEWS });
- //let product_data = fetch_data_sql;
-const fetch_data_sql = require('./views/fetch_data.js');
+
+//const fetch_data_sql = require('./views/fetch_data.js');
+//console.log(fetch_data_sql.extract_data());
+const fetch_data_sql = require('./views/test_sql.js');
 console.log(fetch_data_sql.extract_data());
 //create the server for browser access
 const server = http.createServer((req, res)=>{

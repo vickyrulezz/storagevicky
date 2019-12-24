@@ -54,7 +54,9 @@ module.exports = {
 					table ='<table border="1"><tr><th>Sr No.</th><th>PRODUCT_TYPE</th><th>SKU</th><th>BRAND</th><th>DESCRIPTION</th><th>LONG_DESCRIPTION</th><th>LIST_PRICE</th><th>SIZE</th><th>COLOR</th><th>IN_STOCK</th></tr>'+ table +'</table>';
 					
 					resulthtml = resulthtml.replace('{${table}}', table);
-					return cb(resulthtml);
+					
+					console.log(resulthtml);
+					//return cb(resulthtml);
 		
 					connection.end();
 		  }

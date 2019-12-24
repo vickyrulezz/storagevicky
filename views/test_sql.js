@@ -85,6 +85,9 @@ module.exports = {
 		res.end();
 		});
 	});
+		server.listen(8080, ()=>{
+		console.log('Server running at //localhost:8080/');
+		});
 		console.log("extract_data ends !!!!");
 		//return resulthtml;
 	

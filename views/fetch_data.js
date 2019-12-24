@@ -6,6 +6,7 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
 	;
 
+/*
 const connection = mysql.createConnection({
   host: 'custom-mysql.gamification.svc.cluster.local',
   user: 'xxuser',
@@ -16,22 +17,36 @@ connection.connect((err) => {
   if (err) throw err;
   console.log('Connected!');
 });
+*/
+
+const pool = mysql.createPool({
+  host: "custom-mysql.gamification.svc.cluster.local",
+  user: "xxuser",
+  password: "welcome1",
+  database: "sampledb"
+});
+
+	console.log(pool);
 
 //html string that will be send to browser
 var reo ='<html><head><title>Node.js MySQL Select</title></head><body><h1>Node.js MySQL Select</h1>{${table}}</body></html>';
 
 let sql ='select XXSKU.ITEM_NUMBER SKU, XXSKU.DESCRIPTION,XXPR.LIST_PRICE from XXIBM_PRODUCT_SKU XXSKU,XXIBM_PRODUCT_PRICING XXPR,XXIBM_PRODUCT_STYLE XXPS,XXIBM_PRODUCT_CATALOGUE XXPC where XXSKU.ITEM_NUMBER = XXPR.ITEM_NUMBER and XXSKU.STYLE_ITEM = XXPS.ITEM_NUMBER AND XXSKU.CATALOGUE_CATEGORY=XXPC.COMMODITY';
-console.log(sql);
+
+	console.log(sql);
+
 //sets and returns html table with results from sql select
 //Receives sql query and callback function to return the table
 function setResHtml(sql, cb){
 	console.log("We are in setResHtml");
-  pool.getConnection((err, con)=>{
+  
+pool.getConnection((err, con)=>{
     if(err) throw err;
-
+	
     con.query(sql, (err, res, cols)=>{
       if(err) throw err;
-
+		console.log("Connected and executing query");
+	    
       var table =''; //to store html table
 
       //create html table with data from res.

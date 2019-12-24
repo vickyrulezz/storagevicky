@@ -58,7 +58,7 @@ module.exports = {
 					//console.log(resulthtml);
 					//return cb(resulthtml);
 					
-					return resulthtml;
+					//return resulthtml;
 		
 					connection.end();
 		  }
@@ -75,7 +75,16 @@ module.exports = {
 	extract_data: 
 	function(req, res, next) {
 		console.log("We are in extract_data");
-		module.exports.setResHtml();
+		//module.exports.setResHtml();
+		//create the server for browser access
+		const server = http.createServer((req, res)=>{
+		module.exports.setResHtml(sql, resql=>{
+		//reo = reo.replace('{${table}}', resql);
+		res.writeHead(200, {'Content-Type':'text/html; charset=utf-8'});
+		res.write(resulthtml, 'utf-8');
+		res.end();
+		});
+	});
 		console.log("extract_data ends !!!!");
 		//return resulthtml;
 	

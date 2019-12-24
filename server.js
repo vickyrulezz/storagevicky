@@ -66,10 +66,11 @@ app.get("/fetch_data", function (req, res) {
 
 //const fetch_data_sql = require('./views/fetch_data.js');
 //console.log(fetch_data_sql.extract_data());
-const fetch_data_sql = require('./views/test_sql.js');
-console.log("fetch_data_sql" +fetch_data_sql.extract_data());
+var fetch_data_sql = require('./views/test_sql.js');
+//console.log(fetch_data_sql.extract_data());
 //create the server for browser access
 const server = http.createServer((req, res)=>{
+    console.log("Server creation starts !!!");	
     res.writeHead(200, {'Content-Type':'text/html; charset=utf-8'});
     res.write(fetch_data_sql, 'utf-8');
     res.end();

@@ -1,4 +1,4 @@
-//app.js
+
 const http = require('http');
 const mysql = require('mysql');
 const connection = mysql.createConnection({
@@ -6,10 +6,6 @@ const connection = mysql.createConnection({
   user: 'xxuser',
   password: 'welcome1',
   database: 'sampledb'
-});
-connection.connect((err) => {
-  if (err) throw err;
-  console.log('Connected!');
 });
 
 let commodity_name = process.argv[2]; // pass argument to query
@@ -26,18 +22,33 @@ AND XXPC.COMMODITY_NAME = '` + commodity_name +`'` ;
 
 console.log(sql);
 
-connection.query(sql, function(err, results, fields) {
-  if (!err)
-    //console.log('The solution is: ', results);
-	 // if there is no error, you have the result
-		// iterate for all the rows in result
-		Object.keys(results).forEach(function(key) {
-		  var row = results[key];
-		  console.log(row.PRODUCT_TYPE +`|`+ row.SKU +`|`+ row.BRAND +`|`+ row.DESCRIPTION +`|`+ row.LONG_DESCRIPTION +`|`+ row.LIST_PRICE
-			+`|`+ row.SIZE +`|`+ row.COLOR +`|`+ row.IN_STOCK) 
-	});
-  else
-    console.log('Error while performing Query.');
-});
 
-connection.end();
+var setResHtml;
+var extract_data;
+
+module.exports = {
+	
+	extract_data: function(){
+		connection.connect((err) => {
+			  if (err) throw err;
+			  console.log('Connected!');
+			});
+		connection.query(sql, function(err, results, fields) {
+		  if (!err)
+			//console.log('The solution is: ', results);
+			 // if there is no error, you have the result
+				// iterate for all the rows in result
+				Object.keys(results).forEach(function(key) {
+				  var row = results[key];
+				  console.log(row.PRODUCT_TYPE +`|`+ row.SKU +`|`+ row.BRAND +`|`+ row.DESCRIPTION +`|`+ row.LONG_DESCRIPTION +`|`+ row.LIST_PRICE
+					+`|`+ row.SIZE +`|`+ row.COLOR +`|`+ row.IN_STOCK) 
+			});
+		  else
+			console.log('Error while performing Query.');
+		});
+
+		connection.end();
+
+	}
+	
+}

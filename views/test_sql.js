@@ -59,6 +59,13 @@ module.exports = {
 					resulthtml = resulthtml.replace('{${table}}', table);
 					console.log(resulthtml);
 					//return cb(resulthtml);
+					fs.writeFile('result.html',resulthtml,
+					// callback function that is called after writing file is done
+					function(err) { 
+					if (err) throw err;
+					// if no error
+					console.log("Data is written to file successfully.");
+					});
 					
 					//return resulthtml;
 		
@@ -73,18 +80,6 @@ module.exports = {
 		  }
 		});
 	}
-	,
-	createFile:
-		function(req, res, next) {
-		// write data to file sample.html
-		fs.writeFile('result.html',resulthtml,
-		// callback function that is called after writing file is done
-			function(err) { 
-				if (err) throw err;
-				// if no error
-				console.log("Data is written to file successfully.");
-			});
-		}
 	,
 	extract_data: 
 	function(req, res, next) {

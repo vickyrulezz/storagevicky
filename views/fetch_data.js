@@ -80,7 +80,7 @@ module.exports = {
   
 	pool.getConnection((err, con)=>{
     if(err) throw err;
-	console.log("Connected !!!');
+	console.log("Connected !!!");
 		    
     con.query(sql, (err, res, cols)=>{
       if(err) throw err;

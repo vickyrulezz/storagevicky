@@ -40,7 +40,7 @@ module.exports = {
 		});
 		
 		connection.query(sql, function(err, results, fields) {
-		  if (!err)
+		  if (!err){
 			//console.log('The solution is: ', results);
 			 // if there is no error, you have the result
 				// iterate for all the rows in result
@@ -60,11 +60,13 @@ module.exports = {
 					return cb(resulthtml);
 		
 					connection.end();
-		  
+		  }
 		  else
+		  {
 			console.log('Error while performing Query.');
 			return null;
 			connection.end();
+		  }
 		});
 	}
 	

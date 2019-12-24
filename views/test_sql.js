@@ -1,4 +1,3 @@
-
 const http = require('http');
 const mysql = require('mysql');
 const connection = mysql.createConnection({
@@ -37,15 +36,15 @@ module.exports = {
 			and XXSKU.STYLE_ITEM = XXPS.ITEM_NUMBER
 			AND XXSKU.CATALOGUE_CATEGORY=XXPC.COMMODITY`
 			//AND XXPC.COMMODITY_NAME = '` + commodity_name +`'` ;
-		connection.query(sql, function(err, results, fields) {
+		connection.query(sql, function(err, res, fields) {
 		  if (!err){
-			//console.log('The solution is: ', results);
+			//console.log('The solution is: ', res);
 			 // if there is no error, you have the result
 				// iterate for all the rows in result
 				console.log("Executing query !!!");
 				
-				Object.keys(results).forEach(function(key) {
-				  var row = results[key];
+				Object.keys(res).forEach(function(key) {
+				  var row = res[key];
 				  console.log(row.PRODUCT_TYPE +`|`+ row.SKU +`|`+ row.BRAND +`|`+ row.DESCRIPTION +`|`+ row.LONG_DESCRIPTION +`|`+ row.LIST_PRICE
 					+`|`+ row.SIZE +`|`+ row.COLOR +`|`+ row.IN_STOCK) 
 					});

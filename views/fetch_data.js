@@ -25,7 +25,7 @@ console.log(sql);
 //sets and returns html table with results from sql select
 //Receives sql query and callback function to return the table
 function setResHtml(sql, cb){
-	alert("We are in setResHtml");
+	console.log("We are in setResHtml");
   pool.getConnection((err, con)=>{
     if(err) throw err;
 
@@ -50,6 +50,7 @@ function setResHtml(sql, cb){
 //module.exports = async () 
 module.exports = function extract_data()
 {
+	console.log("We are in module exports !!!");
         let extracted_data;
             //extracted_data = await setResHtml(sql, resql=>
 		extracted_data = setResHtml(sql, resql=>

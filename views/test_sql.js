@@ -64,7 +64,8 @@ module.exports = {
 		  else
 		  {
 			console.log('Error while performing Query.');
-			return err;
+			console.log(err);
+			return null;
 			connection.end();
 		  }
 		});

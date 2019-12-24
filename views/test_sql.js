@@ -53,11 +53,12 @@ module.exports = {
 					}
 					table ='<table border="1"><tr><th>Sr No.</th><th>PRODUCT_TYPE</th><th>SKU</th><th>BRAND</th><th>DESCRIPTION</th><th>LONG_DESCRIPTION</th><th>LIST_PRICE</th><th>SIZE</th><th>COLOR</th><th>IN_STOCK</th></tr>'+ table +'</table>';
 									
+					resulthtml = resulthtml.replace('{${table}}', table);
 					
-					console.log(table);
+					console.log(resulthtml);
 					//return cb(resulthtml);
 					
-					return cb(table);
+					return resulthtml;
 		
 					connection.end();
 		  }
@@ -75,7 +76,7 @@ module.exports = {
 	function(req, res, next) {
 		console.log("We are in extract_data");
 		module.exports.setResHtml();
-		resulthtml = resulthtml.replace('{${table}}', table);
+		console.log("extract_data ends !!!!");
 		
   }
 

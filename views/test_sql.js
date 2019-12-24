@@ -51,11 +51,9 @@ module.exports = {
 				for(var i=0; i<res.length; i++){
 					table +='<tr><td>'+ (i+1) +'</td><td>'+ res[i].PRODUCT_TYPE +'</td><td>'+ res[i].SKU +'</td><td>'+ res[i].BRAND +'</td><td>'+ res[i].DESCRIPTION +'</td><td>'+ res[i].LONG_DESCRIPTION +'</td><td>'+ res[i].LIST_PRICE +'</td><td>'+ res[i].SIZE +'</td><td>'+ res[i].COLOR+'</td><td>'+ res[i].IN_STOCK +'</td></tr>';
 					}
-					table ='<table border="1"><tr><th>Sr No.</th><th>PRODUCT_TYPE</th><th>SKU</th><th>BRAND</th><th>DESCRIPTION</th><th>LONG_DESCRIPTION</th><th>LIST_PRICE</th><th>SIZE</th><th>COLOR</th><th>IN_STOCK</th></tr>'+ table +'</table>';
-									
+					table ='<table border="1"><tr><th>Sr No.</th><th>PRODUCT_TYPE</th><th>SKU</th><th>BRAND</th><th>DESCRIPTION</th><th>LONG_DESCRIPTION</th><th>LIST_PRICE</th><th>SIZE</th><th>COLOR</th><th>IN_STOCK</th></tr>'+ table +'</table>';		
 					resulthtml = resulthtml.replace('{${table}}', table);
-					
-					//console.log(resulthtml);
+					console.log(resulthtml);
 					//return cb(resulthtml);
 					
 					//return resulthtml;
@@ -75,19 +73,7 @@ module.exports = {
 	extract_data: 
 	function(req, res, next) {
 		console.log("We are in extract_data");
-		//module.exports.setResHtml();
-		//create the server for browser access
-		const server = http.createServer((req, res)=>{
-		module.exports.setResHtml(sql, resql=>{
-		//reo = reo.replace('{${table}}', resql);
-		res.writeHead(200, {'Content-Type':'text/html; charset=utf-8'});
-		res.write(resulthtml, 'utf-8');
-		res.end();
-		});
-	});
-		server.listen(8080, ()=>{
-		console.log('Server running at //localhost:8080/');
-		});
+		module.exports.setResHtml();
 		console.log("extract_data ends !!!!");
 		//return resulthtml;
 	

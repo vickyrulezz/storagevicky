@@ -15,7 +15,7 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
 	;
     
-const fetch_data_sql = require('./views/fetch_data');
+//const fetch_data_sql = require('./views/fetch_data');
 
 Object.assign=require('object-assign')
 
@@ -63,12 +63,12 @@ app.get("/background", function (req, res) {
 // Get the data from mysql database
 app.get("/fetch_data", function (req, res) {
   //res.sendFile('fetch_data.js', { root : VIEWS });
-  //res.send('Hello World !!', { root : VIEWS });
- let product_data = fetch_data_sql;
+ //let product_data = fetch_data_sql;
+const fetch_data_sql = require('./views/fetch_data');
 //create the server for browser access
 const server = http.createServer((req, res)=>{
     res.writeHead(200, {'Content-Type':'text/html; charset=utf-8'});
-    res.write(product_data, 'utf-8');
+    res.write(fetch_data_sql, 'utf-8');
     res.end();
 	});
 });

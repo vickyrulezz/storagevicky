@@ -70,6 +70,9 @@ module.exports = {
 }
 */
 
+var setResHtml;
+var extract_data;
+
 module.exports = {
 
   setResHtml: function (sql, cb){
@@ -100,6 +103,7 @@ module.exports = {
 }
 	
   extract_data: function(req, res, next) {
+	console.log("We are in extract_data");
     module.exports.setResHtml();
   }
 }

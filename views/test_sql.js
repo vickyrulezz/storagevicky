@@ -58,15 +58,7 @@ module.exports = {
 					table ='<table border="1"><tr><th>Sr No.</th><th>PRODUCT_TYPE</th><th>SKU</th><th>BRAND</th><th>DESCRIPTION</th><th>LONG_DESCRIPTION</th><th>LIST_PRICE</th><th>SIZE</th><th>COLOR</th><th>IN_STOCK</th></tr>'+ table +'</table>';		
 					resulthtml = resulthtml.replace('{${table}}', table);
 					console.log(resulthtml);
-					//return cb(resulthtml);
-					fs.writeFile('result.html',resulthtml,
-					// callback function that is called after writing file is done
-					function(err) { 
-					if (err) throw err;
-					// if no error
-					console.log("Data is written to file successfully.");
-					});
-					
+					//return cb(resulthtml);					
 					//return resulthtml;
 		
 					connection.end();

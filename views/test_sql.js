@@ -52,12 +52,13 @@ module.exports = {
 					table +='<tr><td>'+ (i+1) +'</td><td>'+ res[i].PRODUCT_TYPE +'</td><td>'+ res[i].SKU +'</td><td>'+ res[i].BRAND +'</td><td>'+ res[i].DESCRIPTION +'</td><td>'+ res[i].LONG_DESCRIPTION +'</td><td>'+ res[i].LIST_PRICE +'</td><td>'+ res[i].SIZE +'</td><td>'+ res[i].COLOR+'</td><td>'+ res[i].IN_STOCK +'</td></tr>';
 					}
 					table ='<table border="1"><tr><th>Sr No.</th><th>PRODUCT_TYPE</th><th>SKU</th><th>BRAND</th><th>DESCRIPTION</th><th>LONG_DESCRIPTION</th><th>LIST_PRICE</th><th>SIZE</th><th>COLOR</th><th>IN_STOCK</th></tr>'+ table +'</table>';
+									
 					
-					resulthtml = resulthtml.replace('{${table}}', table);
-					
-					//console.log(resulthtml);
+					console.log(table);
 					//return cb(resulthtml);
-					return resulthtml;
+					
+					return cb(table);
+		
 					connection.end();
 		  }
 		  else
@@ -74,6 +75,8 @@ module.exports = {
 	function(req, res, next) {
 		console.log("We are in extract_data");
 		module.exports.setResHtml();
+		resulthtml = resulthtml.replace('{${table}}', table);
+		
   }
 
  }

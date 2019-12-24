@@ -83,7 +83,7 @@ module.exports = {
 				if (err) throw err;
 				// if no error
 				console.log("Data is written to file successfully.");
-			}
+			});
 		}
 	,
 	extract_data: 

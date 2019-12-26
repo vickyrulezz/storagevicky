@@ -21,7 +21,6 @@ Object.assign=require('object-assign')
 
 app.set('views', VIEWS);
 app.engine('html', require('ejs').renderFile);
-app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 

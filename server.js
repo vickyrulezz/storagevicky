@@ -14,10 +14,11 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
 	;
 
 // HTML Table presentation
-//var _ = require('lodash');
-//var createHTML = require('create-html');
+var _ = require('lodash');
+var createHTML = require('create-html');
 var tableHtml = "";
-//var date = new Date();
+var date = new Date();
+var json_data = "";
 
 
 // Using JSON
@@ -115,7 +116,8 @@ AND XXSKU.CATALOGUE_CATEGORY=XXPC.COMMODITY`;
 console.log(sql);
   let query = mysqlClient.query(sql, (err, results) => {
     if(err) throw err;
-	console.log(results);
+	json_data = JSON.stringify({"response": results});
+	console.log(json_data);
     //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
   });
 });

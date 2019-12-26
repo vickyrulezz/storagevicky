@@ -125,11 +125,13 @@ console.log(sql);
       }
       table ='<table border="1"><tr><th>Sr No.</th><th>PRODUCT_TYPE</th><th>SKU</th><th>BRAND</th><th>DESCRIPTION</th><th>LONG_DESCRIPTION</th><th>LIST_PRICE</th><th>SIZE</th><th>COLOR</th><th>IN_STOCK</th></tr>'+ table +'</table>';	
 	//json_data = JSON.stringify(results);
+	resulthtml = resulthtml.replace('{${table}}', table);
 	console.log("-----------------------------------------------------------------------------------------------");
-	console.log(table);
+	console.log(resulthtml);
 	console.log("-----------------------------------------------------------------------------------------------");
 	
     //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+	res.send(resulthtml);
   });
 });
 

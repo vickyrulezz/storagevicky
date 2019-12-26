@@ -117,12 +117,93 @@ console.log(sql);
   let query = mysqlClient.query(sql, (err, results) => {
     if(err) throw err;
 	json_data = JSON.stringify(results);
+	.then(contents=>fetchContents(contents));
 	console.log("-----------------------------------------------------------------------------------------------");
-	console.log(json_data);
+	//console.log(json_data);
 	console.log("-----------------------------------------------------------------------------------------------");
+	
     //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
   });
 });
+
+function fetchContents(contents){
+ return new Promise(function(resolve, reject) {
+    console.log("Iterating through the 'result' array of objects to be displayed in table");
+    _.forEach(contents.result,function(value,key){
+      // logger.debug("Ticket Numbers: " + value.number);
+      tableHtml = tableHtml+'<tr>'+
+      '<td>'+value.PRODUCT_TYPE+'</td>'+
+      '<td>'+value.SKU+'</td>'+
+      '<td>'+value.BRAND+'</td>'+
+      '<td>'+value.DESCRIPTION+'</td>'+
+	  '<td>'+value.LONG_DESCRIPTION+'</td>'+
+	  '<td>'+value.LIST_PRICE+'</td>'+
+	  '<td>'+value.SIZE+'</td>'+
+	  '<td>'+value.COLOR+'</td>'+
+	  '<td>'+value.IN_STOCK+'</td>'+
+      '</tr>';
+	  console.log(tableHtml);
+    })
+    resolve();
+ })
+}
+
+function createReport(){
+  return new Promise(function(resolve, reject) {
+   var html = createHTML({
+    title: "Offender Configuration Items - " + (new Date().toUTCString()),
+      scriptAsync: true,
+      css: '',
+      script: '',
+      lang: 'en',
+      dir: 'ltr',
+      head: '<meta charset="utf-8">'+
+      '<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">'+
+      '<meta name="description" content="">'+
+      '<meta name="author" content="">'+
+      '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">'+
+      '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">'+
+      '<style>'+
+      'html {position: relative; min-height: 100%;}'+
+      'body {margin-bottom: 60px; /* Margin bottom by footer height */}'+
+      '.footer {position: absolute; bottom: 0; width: 100%; height: 60px;  line-height: 60px;  background-color: #f5f5f5;}'+
+      '.container {width: auto; min-width: 992px; padding: 0 15px;}'+
+      '</style>',
+      body: '<main role="main" class="container">'+
+      '<h1 class="mt-5">'+ 'Chronic devices with same symptoms repeating for more than 5 times in 24hrs.'+'</h1>'+
+      '<div class="alert alert-primary" role="alert">Note: Count of duplicate tickets mentioned in summary and number of related incidents might vary</div>'+
+      '<table class="table table-hover">'+
+          '<thead>'+
+          '<th scope="col">Number</th>'+
+          '<th scope="col">Related Incidents</th>'+
+          '<th scope="col">Configuration Item</th>'+
+          '<th scope="col">Summary</th>'+
+          '<th scope="col">Company</th>'+
+          '</thead>'+
+          '<tbody>'+
+          tableHtml +
+          '</tbody>'+
+      '</table>'+
+      '</main>'+
+      '<footer class="footer">'+
+          '<div class="container">'+
+              '<span class="text-muted">Report Generated: '+date.toUTCString()+
+              '</span>'+
+              '<br>'+
+              '<span class="text-muted">Chronic Group Report</span>'+
+          '</div>'+
+      '</footer>'
+    })
+    resolve(html);
+  })
+}
+
+
+
+
+
+
+
 
 	
 //create the server for browser access

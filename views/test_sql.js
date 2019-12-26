@@ -52,7 +52,7 @@ module.exports = {
 				  var row = res[key];
 				  //console.log(row.PRODUCT_TYPE +`|`+ row.SKU +`|`+ row.BRAND +`|`+ row.DESCRIPTION +`|`+ row.LONG_DESCRIPTION +`|`+ row.LIST_PRICE
 				//	+`|`+ row.SIZE +`|`+ row.COLOR +`|`+ row.IN_STOCK) 
-				//	});
+					});
 				for(var i=0; i<res.length; i++){
 					table +='<tr><td>'+ (i+1) +'</td><td>'+ res[i].PRODUCT_TYPE +'</td><td>'+ res[i].SKU +'</td><td>'+ res[i].BRAND +'</td><td>'+ res[i].DESCRIPTION +'</td><td>'+ res[i].LONG_DESCRIPTION +'</td><td>'+ res[i].LIST_PRICE +'</td><td>'+ res[i].SIZE +'</td><td>'+ res[i].COLOR+'</td><td>'+ res[i].IN_STOCK +'</td></tr>';
 					}

@@ -121,7 +121,7 @@ console.log(sql);
     if(err) throw err;
 	
 	for(var i=0; i<results.length; i++){
-        table +='<tr><td>'+ (i+1) +'</td><td>'+ res[i].PRODUCT_TYPE +'</td><td>'+ res[i].SKU +'</td><td>'+ res[i].BRAND +'</td><td>'+ res[i].DESCRIPTION +'</td><td>'+ res[i].LONG_DESCRIPTION +'</td><td>'+ res[i].LIST_PRICE +'</td><td>'+ res[i].SIZE +'</td><td>'+ res[i].COLOR+'</td><td>'+ res[i].IN_STOCK +'</td></tr>';
+        table +='<tr><td>'+ (i+1) +'</td><td>'+ results[i].PRODUCT_TYPE +'</td><td>'+ results[i].SKU +'</td><td>'+ results[i].BRAND +'</td><td>'+ results[i].DESCRIPTION +'</td><td>'+ results[i].LONG_DESCRIPTION +'</td><td>'+ results[i].LIST_PRICE +'</td><td>'+ results[i].SIZE +'</td><td>'+ results[i].COLOR+'</td><td>'+ results[i].IN_STOCK +'</td></tr>';
       }
       table ='<table border="1"><tr><th>Sr No.</th><th>PRODUCT_TYPE</th><th>SKU</th><th>BRAND</th><th>DESCRIPTION</th><th>LONG_DESCRIPTION</th><th>LIST_PRICE</th><th>SIZE</th><th>COLOR</th><th>IN_STOCK</th></tr>'+ table +'</table>';	
 	//json_data = JSON.stringify(results);

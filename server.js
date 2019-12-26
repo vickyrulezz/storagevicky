@@ -128,10 +128,10 @@ console.log(sql);
 	
     //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
 	//res.render('allproducts.html', { root : VIEWS , data : resulthtml})
-	//res.send(resulthtml);
-		res.render('allproducts.html', { root : VIEWS }, function (err, html) {
-  		res.send(resulthtml)
-		})
+	res.send(resulthtml);
+		//res.render('allproducts.html', { root : VIEWS }, function (err, html) {
+  		//res.send(resulthtml);
+		//})
   });
 });
 

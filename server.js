@@ -127,8 +127,8 @@ console.log(sql);
 	//console.log("-----------------------------------------------------------------------------------------------");
 	
     //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
-	res.sendFile('allproducts.html', { root : VIEWS })
-	res.send(resulthtml);
+	res.render('allproducts.html', { root : VIEWS , data : resulthtml})
+	//res.send(resulthtml);
   });
 });
 

@@ -117,10 +117,9 @@ console.log(sql);
   let query = mysqlClient.query(sql, (err, results) => {
     if(err) throw err;
 	json_data = JSON.stringify(results);
+	console.log("-----------------------------------------------------------------------------------------------");
 	console.log(json_data);
-	var js_dt = results.json();
-	console.log("--------------------------------------");
-	 console.log(js_dt);
+	console.log("-----------------------------------------------------------------------------------------------");
     //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
   });
 });

@@ -12,7 +12,14 @@ const VIEWS = path.join(__dirname, 'views');
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
 	;
-	
+
+// HTML Table presentation
+var _ = require('lodash');
+var createHTML = require('create-html');
+var tableHtml = "";
+var date = new Date();
+
+
 // Using JSON
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -108,7 +115,8 @@ AND XXSKU.CATALOGUE_CATEGORY=XXPC.COMMODITY`;
 console.log(sql);
   let query = mysqlClient.query(sql, (err, results) => {
     if(err) throw err;
-    res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+	console.log(response);
+    //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
   });
 });
 

@@ -19,7 +19,7 @@ var table = '';
 console.log(sql);
 
 
-global.resultpage = '';
+var resultpage = '';
 var setResHtml;
 var extract_data;
 var createFile;
@@ -61,7 +61,7 @@ module.exports = {
 					console.log(resulthtml);
 					//return cb(resulthtml);					
 					//return resulthtml;
-					global.resultpage = resulthtml;
+					resultpage = resulthtml;
 					connection.end();
 		  }
 		  else
@@ -80,6 +80,8 @@ module.exports = {
 		module.exports.setResHtml();
 		//module.exports.createFile();
 		console.log("extract_data ends !!!!");
+		
+		module.exports.resultpage;
 		//return resulthtml;
 	}
 	

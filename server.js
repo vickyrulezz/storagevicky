@@ -99,10 +99,6 @@ app.get("/background", function (req, res) {
   res.sendFile('background.jpg', { root : VIEWS });
 });
 
-// Get the data from mysql database
-//app.get("/fetch_data", function (req, res) {
-  //res.sendFile('fetch_data.js', { root : VIEWS });
-
 
 //GET ALL PRODUCTS - To retrieve all all products call this API ... URL/api/getproducts
 app.get('/get_all_products',(req, res) => {
@@ -126,16 +122,15 @@ console.log(sql);
       table ='<table border="1"><tr><th>Sr No.</th><th>PRODUCT_TYPE</th><th>SKU</th><th>BRAND</th><th>DESCRIPTION</th><th>LONG_DESCRIPTION</th><th>LIST_PRICE</th><th>SIZE</th><th>COLOR</th><th>IN_STOCK</th></tr>'+ table +'</table>';	
 	//json_data = JSON.stringify(results);
 	resulthtml = resulthtml.replace('{${table}}', table);
-	console.log("-----------------------------------------------------------------------------------------------");
-	console.log(resulthtml);
-	console.log("-----------------------------------------------------------------------------------------------");
+	//console.log("-----------------------------------------------------------------------------------------------");
+	//console.log(resulthtml);
+	//console.log("-----------------------------------------------------------------------------------------------");
 	
     //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+	res.sendFile('allproducts.html', { root : VIEWS })
 	res.send(resulthtml);
   });
 });
-
-
 
 	
 //create the server for browser access

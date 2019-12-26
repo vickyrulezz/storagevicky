@@ -117,7 +117,7 @@ console.log(sql);
   let query = mysqlClient.query(sql, (err, results) => {
     if(err) throw err;
 	json_data = JSON.stringify(results);
-	.then(contents=>fetchContents(contents));
+	fetchContents(json_data);
 	console.log("-----------------------------------------------------------------------------------------------");
 	//console.log(json_data);
 	console.log("-----------------------------------------------------------------------------------------------");

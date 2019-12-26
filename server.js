@@ -116,7 +116,7 @@ AND XXSKU.CATALOGUE_CATEGORY=XXPC.COMMODITY`;
 console.log(sql);
   let query = mysqlClient.query(sql, (err, results) => {
     if(err) throw err;
-	json_data = JSON.stringify({"response": results});
+	json_data = JSON.stringify({results});
 	console.log(json_data);
     //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
   });

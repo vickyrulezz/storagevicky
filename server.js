@@ -68,11 +68,13 @@ app.get("/fetch_data", function (req, res) {
 //console.log(fetch_data_sql.extract_data());
 var fetch_data_sql = require('./views/test_sql.js');
 fetch_data_sql.extract_data();
+console.log("Value of resultpage is :");
+console.log(fetch_data_sql.resultpage);
 	
 //create the server for browser access
 const server = http.createServer((req, res)=>{
    //if (req.url == '/fetch_data'){
-	console.log('Creating Server .....');
+	console.log("Creating Server .....");
     res.writeHead(200, {'Content-Type':'text/html; charset=utf-8'});
     res.write(global.resultpage, 'utf-8');
     res.end();

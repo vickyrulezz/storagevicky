@@ -74,7 +74,7 @@ const server = http.createServer((req, res)=>{
    //if (req.url == '/fetch_data'){
 	console.log('Creating Server .....');
     res.writeHead(200, {'Content-Type':'text/html; charset=utf-8'});
-    res.write(fetch_data_sql, 'utf-8');
+    res.write(global.resultpage, 'utf-8');
     res.end();
    //}
 	});

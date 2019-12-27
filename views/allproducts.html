@@ -61,6 +61,12 @@ iframe {
     position:relative;
 }
 </style>
+	
+<script>
+  function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+  }
+</script>
   </head>
   <body>
     
@@ -97,8 +103,7 @@ iframe {
 <div class="container">
 	<br/><br/>
      <h4><font color="#ffff99">Andromeda Kool-App all Product Details</font></h4>
-	<iframe src="/get_all_products" scrolling="auto">
-	</iframe>	 
+	<iframe src="/get_all_products" scrolling="auto" onload="resizeIframe(this)" />	 
 </div>
 </section>
 <!-- END section -->

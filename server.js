@@ -22,8 +22,8 @@ var date = new Date();
 var json_data = "";
 //html string that will be send to browser
 var table = "";
-//var resulthtml ='<html><head><title>Kool App - Andromeda Product Page</title></head><body><h1>Product Details</h1>{${table}}</body></html>';
-var resulthtml ='';
+var resulthtml ='<html><head><title>Kool App - Andromeda Product Page</title></head><body><h1>Product Details</h1>{${table}}</body></html>';
+//var resulthtml ='';
 
 // Using JSON
 app.use(bodyParser.json());
@@ -101,7 +101,7 @@ app.get("/background", function (req, res) {
 });
 
 
-//GET ALL PRODUCTS - To retrieve all all products call this API ... URL/api/getproducts
+//GET ALL PRODUCTS - To retrieve all all products call this API ... URL/api/get_all_products
 app.get('/get_all_products',(req, res) => {
 let sql = `select XXPC.COMMODITY_NAME PRODUCT_TYPE, XXSKU.ITEM_NUMBER SKU, XXPS.BRAND ,XXSKU.DESCRIPTION,XXSKU.LONG_DESCRIPTION, 
 XXPR.LIST_PRICE,XXSKU.SKU_ATTRIBUTE_VALUE1 SIZE,XXSKU.SKU_ATTRIBUTE_VALUE2 COLOR,XXPR.IN_STOCK from 
@@ -130,11 +130,38 @@ console.log(sql);
 	
 });
 
+
+//GET SEARCHED PRODUCTS - To retrieve all all products call this API ... URL/api/get_searched_products
+app.get('/get_searched_products',(req, res) => {
+let sql = `select XXPC.COMMODITY_NAME PRODUCT_TYPE, XXSKU.ITEM_NUMBER SKU, XXPS.BRAND ,XXSKU.DESCRIPTION,XXSKU.LONG_DESCRIPTION, 
+XXPR.LIST_PRICE,XXSKU.SKU_ATTRIBUTE_VALUE1 SIZE,XXSKU.SKU_ATTRIBUTE_VALUE2 COLOR,XXPR.IN_STOCK from 
+XXIBM_PRODUCT_SKU XXSKU,
+XXIBM_PRODUCT_PRICING XXPR,
+XXIBM_PRODUCT_STYLE XXPS,
+XXIBM_PRODUCT_CATALOGUE XXPC
+where XXSKU.ITEM_NUMBER = XXPR.ITEM_NUMBER
+and XXSKU.STYLE_ITEM = XXPS.ITEM_NUMBER
+AND XXSKU.CATALOGUE_CATEGORY=XXPC.COMMODITY`;
+    
+console.log(sql);
+  let query = mysqlClient.query(sql, (err, results, columns) => {
+    if(err) throw err;
+	
+	for(var i=0; i<results.length; i++){
+        table +='<tr><td>'+ (i+1) +'</td><td>'+ results[i].PRODUCT_TYPE +'</td><td>'+ results[i].SKU +'</td><td>'+ results[i].BRAND +'</td><td>'+ results[i].DESCRIPTION +'</td><td>'+ results[i].LONG_DESCRIPTION +'</td><td>'+ results[i].LIST_PRICE +'</td><td>'+ results[i].SIZE +'</td><td>'+ results[i].COLOR+'</td><td>'+ results[i].IN_STOCK +'</td></tr>';
+      }
+      table ='<table border="1"><tr><th>Sr No.</th><th>PRODUCT_TYPE</th><th>SKU</th><th>BRAND</th><th>DESCRIPTION</th><th>LONG_DESCRIPTION</th><th>LIST_PRICE</th><th>SIZE</th><th>COLOR</th><th>IN_STOCK</th></tr>'+ table +'</table>';
+	resulthtml = resulthtml.replace('{${table}}', table);
+	res.send(resulthtml);
+  });
+	
+});
+
 //create the server for browser access
 var server = http.createServer((req, res)=>{
 	console.log("Creating Server .....");
 	if (req.url === "/get_all_products") {
-        fs.readFile('index.html', { root : VIEWS }, function (error, pgResp) {
+        fs.readFile('allproducts.html', { root : VIEWS }, function (error, pgResp) {
             if (error) {
                 resp.writeHead(404);
                 resp.write('Contents you are looking are Not Found');

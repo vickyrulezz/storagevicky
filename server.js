@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var mysql = require("mysql");
 
 const http = require('http');
+var fs = require("fs");
 
 var path = require('path');
 const VIEWS = path.join(__dirname, 'views');
@@ -119,32 +120,41 @@ console.log(sql);
 	for(var i=0; i<results.length; i++){
         table +='<tr><td>'+ (i+1) +'</td><td>'+ results[i].PRODUCT_TYPE +'</td><td>'+ results[i].SKU +'</td><td>'+ results[i].BRAND +'</td><td>'+ results[i].DESCRIPTION +'</td><td>'+ results[i].LONG_DESCRIPTION +'</td><td>'+ results[i].LIST_PRICE +'</td><td>'+ results[i].SIZE +'</td><td>'+ results[i].COLOR+'</td><td>'+ results[i].IN_STOCK +'</td></tr>';
       }
-      table ='<table border="1"><tr><th>Sr No.</th><th>PRODUCT_TYPE</th><th>SKU</th><th>BRAND</th><th>DESCRIPTION</th><th>LONG_DESCRIPTION</th><th>LIST_PRICE</th><th>SIZE</th><th>COLOR</th><th>IN_STOCK</th></tr>'+ table +'</table>';	
-	//json_data = JSON.stringify(results);
+      table ='<table border="1"><tr><th>Sr No.</th><th>PRODUCT_TYPE</th><th>SKU</th><th>BRAND</th><th>DESCRIPTION</th><th>LONG_DESCRIPTION</th><th>LIST_PRICE</th><th>SIZE</th><th>COLOR</th><th>IN_STOCK</th></tr>'+ table +'</table>';
 	resulthtml = resulthtml.replace('{${table}}', table);
-	//console.log("-----------------------------------------------------------------------------------------------");
-	//console.log(resulthtml);
-	//console.log("-----------------------------------------------------------------------------------------------");
 	
     //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
 	//res.render('allproducts.html', { root : VIEWS , data : resulthtml})
-	res.send(resulthtml);
-		//res.render('allproducts.html', { root : VIEWS }, function (err, html) {
-  		//res.send(resulthtml);
-		//})
+	//res.send(resulthtml);
   });
+	
+//create the server for browser access
+var server = http.createServer((req, res)=>{
+   //if (req.url == '/fetch_data'){
+	console.log("Creating Server .....");
+	if (req.url === "/get_all_products") {
+        fs.readFile('index.html', { root : VIEWS }, function (error, pgResp) {
+            if (error) {
+                resp.writeHead(404);
+                resp.write('Contents you are looking are Not Found');
+            } else {
+                resp.writeHead(200, { 'Content-Type': 'text/html' });
+                resp.write(resulthtml);
+            }
+             
+            resp.end();
+        });
+    } 
+    //res.writeHead(200, {'Content-Type':'text/html; charset=utf-8'});
+    //res.write(resulthtml, 'utf-8');
+    //res.end();
+   //}
+});
+	
 });
 
 	
-//create the server for browser access
-const server = http.createServer((req, res)=>{
-   //if (req.url == '/fetch_data'){
-	console.log("Creating Server .....");
-    res.writeHead(200, {'Content-Type':'text/html; charset=utf-8'});
-    res.write(global.resultpage, 'utf-8');
-    res.end();
-   //}
-	});
+
 
 
 // Port Listen

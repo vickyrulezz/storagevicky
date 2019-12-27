@@ -119,11 +119,11 @@ XXIBM_PRODUCT_CATALOGUE XXPC
 where XXSKU.ITEM_NUMBER = XXPR.ITEM_NUMBER
 and XXSKU.STYLE_ITEM = XXPS.ITEM_NUMBER
 AND XXSKU.CATALOGUE_CATEGORY=XXPC.COMMODITY
-AND upper(XXSKU.ITEM_NUMBER) like upper('%`+searchParam+`%') 
+AND (upper(XXSKU.ITEM_NUMBER) like upper('%`+searchParam+`%') 
 OR upper(XXPC.COMMODITY_NAME) like upper('%`+searchParam+`%') 
 OR upper(XXSKU.DESCRIPTION) like upper('%`+searchParam+`%') 
 OR upper(XXSKU.LONG_DESCRIPTION) like upper('%`+searchParam+`%')
-`;
+)`;
     
 console.log(sql);
   let query = mysqlClient.query(sql, (err, results, columns) => {

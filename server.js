@@ -24,6 +24,7 @@ var json_data = "";
 var table = "";
 var resulthtml ='<html><head><title>Kool App - Andromeda Product Page</title></head><body>{${table}}</body></html>';
 //var resulthtml ='';
+var searchParam = '';
 
 // Using JSON
 app.use(bodyParser.json());
@@ -42,6 +43,7 @@ var mysqlPort = process.env.OPENSHIFT_MYSQL_DB_PORT || 3306;
 var mysqlUser = 'xxuser'; 
 var mysqlPass = 'welcome1';
 var mysqlDb = 'sampledb';
+
 
 //form the connection string to connect to mysql - you can connect directly too 
 var mysqlString = 'mysql://' + mysqlUser + ':' + mysqlPass + '@' + mysqlHost + ':' + mysqlPort + '/' + mysqlDb;
@@ -85,6 +87,7 @@ app.get("/about", function (req, res) {
 
 app.get("/getallproducts", function (req, res) {
   res.sendFile('allproducts.html', { root : VIEWS });
+  searchParam = req.query.txtSearch;
 });
 
 // Route to css stylesheet and images
@@ -106,7 +109,7 @@ app.get("/background", function (req, res) {
 
 
 //GET ALL PRODUCTS - To retrieve all all products call this API ... URL/api/get_all_products
-app.get('/get_all_products/:id',(req, res) => {
+app.get('/get_all_products',(req, res) => {
 let sql = `select XXPC.COMMODITY_NAME PRODUCT_TYPE, XXSKU.ITEM_NUMBER SKU, XXPS.BRAND ,XXSKU.DESCRIPTION,XXSKU.LONG_DESCRIPTION, 
 XXPR.LIST_PRICE,XXSKU.SKU_ATTRIBUTE_VALUE1 SIZE,XXSKU.SKU_ATTRIBUTE_VALUE2 COLOR,XXPR.IN_STOCK from 
 XXIBM_PRODUCT_SKU XXSKU,
@@ -116,7 +119,10 @@ XXIBM_PRODUCT_CATALOGUE XXPC
 where XXSKU.ITEM_NUMBER = XXPR.ITEM_NUMBER
 and XXSKU.STYLE_ITEM = XXPS.ITEM_NUMBER
 AND XXSKU.CATALOGUE_CATEGORY=XXPC.COMMODITY
-WHERE XXSKU.ITEM_NUMBER=`+req.params.id;
+WHERE XXSKU.ITEM_NUMBER=`+searchParam+
+`OR XXPC.COMMODITY_NAME='%`+searchParam+`%' 
+OR XXSKU.DESCRIPTION = '%`+searchParam+`%' 
+OR XXSKU.LONG_DESCRIPTION = '%`+searchParam+`%'`;
     
 console.log(sql);
   let query = mysqlClient.query(sql, (err, results, columns) => {

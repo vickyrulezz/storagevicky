@@ -64,7 +64,8 @@ iframe {
 	
 <script>
   function resizeIframe(obj) {
-    obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+	obj.style.width = obj.contentWindow.document.documentElement.clientWidth +'px';
+    obj.style.height = obj.contentWindow.document.documentElement.clientHeight + 'px';//obj.contentWindow.document.documentElement.scrollHeight 
   }
 </script>
   </head>
@@ -99,16 +100,18 @@ iframe {
     </header>
     <!-- END header -->
 
-<!--
+
 <section class="site-hero overlay" data-stellar-background-ratio="0.5" style="background-image: url(/background);">
 <div class="container">
 	<br/><br/>
-
+     		<h4><font color="#ffff99">Andromeda Kool-App all Product Details</font></h4>
+		<iframe src="/get_all_products" scrolling="auto" onload="resizeIframe(this)" />	 
 </div>
 </section>
--->
-<!-- END section -->
 
+<!-- END section -->
+	  
+<!--
     <section class="site-hero overlay" data-stellar-background-ratio="0.5" style="background-image: url(/background);">
       <div class="container">
         <div class="row align-items-center site-hero-inner justify-content-center">
@@ -118,5 +121,6 @@ iframe {
           </div>
         </div>
       </div>
+-->
   </body>
 </html>

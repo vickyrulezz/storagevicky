@@ -109,7 +109,7 @@ app.get("/background", function (req, res) {
 
 
 //GET ALL PRODUCTS - To retrieve all all products call this API ... URL/get_all_products
-app.post('/get_all_products',(req, res) => {
+app.get('/get_all_products',(req, res) => {
 	
 searchParam = req.query.txtSearch;
 	

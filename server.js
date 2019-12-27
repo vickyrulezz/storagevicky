@@ -22,8 +22,8 @@ var date = new Date();
 var json_data = "";
 //html string that will be send to browser
 var table = "";
-var resulthtml ='<html><head><title>Kool App - Andromeda Product Page</title></head><body><h1>Product Details</h1>{${table}}</body></html>';
-
+//var resulthtml ='<html><head><title>Kool App - Andromeda Product Page</title></head><body><h1>Product Details</h1>{${table}}</body></html>';
+var resulthtml ='';
 
 // Using JSON
 app.use(bodyParser.json());
@@ -125,12 +125,13 @@ console.log(sql);
 	
     //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
 	//res.render('allproducts.html', { root : VIEWS , data : resulthtml})
-	//res.send(resulthtml);
+	res.send(resulthtml);
   });
 	
+});
+
 //create the server for browser access
 var server = http.createServer((req, res)=>{
-   //if (req.url == '/fetch_data'){
 	console.log("Creating Server .....");
 	if (req.url === "/get_all_products") {
         fs.readFile('index.html', { root : VIEWS }, function (error, pgResp) {
@@ -145,14 +146,7 @@ var server = http.createServer((req, res)=>{
             resp.end();
         });
     } 
-    //res.writeHead(200, {'Content-Type':'text/html; charset=utf-8'});
-    //res.write(resulthtml, 'utf-8');
-    //res.end();
-   //}
 });
-	
-});
-
 	
 
 

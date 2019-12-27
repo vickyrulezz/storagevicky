@@ -73,7 +73,12 @@ form.example::after {
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-
+	
+		<form name="searchProduct" class="example" method="GET" action="/getallproducts">
+			  <input type="text" placeholder="Search.." name="txtSearch" />
+			  <button type="submit"><i class="fa fa-search"></i></button>
+		</form>
+		
           <div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
             <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
               <li class="nav-item">

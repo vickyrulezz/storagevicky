@@ -119,10 +119,10 @@ XXIBM_PRODUCT_CATALOGUE XXPC
 where XXSKU.ITEM_NUMBER = XXPR.ITEM_NUMBER
 and XXSKU.STYLE_ITEM = XXPS.ITEM_NUMBER
 AND XXSKU.CATALOGUE_CATEGORY=XXPC.COMMODITY
-WHERE XXSKU.ITEM_NUMBER like '%`+searchParam+`%'
-OR XXPC.COMMODITY_NAME like '%`+searchParam+`%' 
-OR XXSKU.DESCRIPTION like '%`+searchParam+`%' 
-OR XXSKU.LONG_DESCRIPTION like '%`+searchParam+`%'
+AND upper(XXSKU.ITEM_NUMBER) like upper('%`+searchParam+`%') 
+OR upper(XXPC.COMMODITY_NAME) like upper('%`+searchParam+`%') 
+OR upper(XXSKU.DESCRIPTION) like upper('%`+searchParam+`%') 
+OR upper(XXSKU.LONG_DESCRIPTION) like upper('%`+searchParam+`%')
 `;
     
 console.log(sql);

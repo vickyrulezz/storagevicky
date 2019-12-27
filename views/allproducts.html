@@ -54,6 +54,14 @@ form.example::after {
   clear: both;
   display: table;
 }
+	
+iframe {
+  display:solid;
+  width:100%;
+  height:100%;
+  position:absolute;
+}
+
 </style>
   </head>
   <body>
@@ -93,12 +101,13 @@ form.example::after {
           <div class="col-md-8 text-center">
 
             <div>
-              <h4>Andromeda Kool-App all Product Details</h4>
 		<font color="#ffff99">
+              <h4>Andromeda Kool-App all Product Details</h4>
               <section id="dynamic_data">
-		<iframe src="/get_all_products">
+		<iframe src="/get_all_products" scrolling="auto">
 		</iframe>	
-		</section>             
+		</section>   
+		    </font>
             </div>
           </div>
         </div>

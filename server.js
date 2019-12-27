@@ -83,6 +83,10 @@ app.get("/about", function (req, res) {
   res.sendFile('about.html', { root : VIEWS });
 });
 
+app.get("/get_all_products", function (req, res) {
+  res.sendFile('allproducts.html', { root : VIEWS });
+});
+
 // Route to css stylesheet and images
 app.get("/animate", function (req, res) {
   res.sendFile('animate.css', { root : VIEWS });

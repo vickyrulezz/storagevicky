@@ -83,7 +83,7 @@ app.get("/about", function (req, res) {
   res.sendFile('about.html', { root : VIEWS });
 });
 
-app.get("/get_all_products", function (req, res) {
+app.get("/getallproducts", function (req, res) {
   res.sendFile('allproducts.html', { root : VIEWS });
 });
 

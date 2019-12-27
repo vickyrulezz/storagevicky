@@ -119,10 +119,11 @@ XXIBM_PRODUCT_CATALOGUE XXPC
 where XXSKU.ITEM_NUMBER = XXPR.ITEM_NUMBER
 and XXSKU.STYLE_ITEM = XXPS.ITEM_NUMBER
 AND XXSKU.CATALOGUE_CATEGORY=XXPC.COMMODITY
-WHERE XXSKU.ITEM_NUMBER=`+searchParam+ 
-`OR XXPC.COMMODITY_NAME='%`+searchParam+`%' 
+WHERE XXSKU.ITEM_NUMBER = '%`+searchParam+`%'
+OR XXPC.COMMODITY_NAME = '%`+searchParam+`%' 
 OR XXSKU.DESCRIPTION = '%`+searchParam+`%' 
-OR XXSKU.LONG_DESCRIPTION = '%`+searchParam+`%'`;
+OR XXSKU.LONG_DESCRIPTION = '%`+searchParam+`%'
+`;
     
 console.log(sql);
   let query = mysqlClient.query(sql, (err, results, columns) => {

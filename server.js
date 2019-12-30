@@ -68,6 +68,7 @@ app.get('/api/status/db', function (req, res) {
 
 // Getting all the pages/elements
 app.get('/', function (req, res) {
+     table = "";
      res.render('index.html', { root : VIEWS });
 });
 
@@ -128,9 +129,8 @@ OR upper(XXSKU.LONG_DESCRIPTION) like upper('%`+searchParam+`%')
 console.log(sql);
   let query = mysqlClient.query(sql, (err, results, columns) => {
     if(err) throw err;
-	
+	//table = "";
 	for(var i=0; i<results.length; i++){
-	table = "";
         table +='<tr><td>'+ (i+1) +'</td><td>'+ results[i].PRODUCT_TYPE +'</td><td>'+ results[i].SKU +'</td><td>'+ results[i].BRAND +'</td><td>'+ results[i].DESCRIPTION +'</td><td>'+ results[i].LONG_DESCRIPTION +'</td><td>'+ results[i].LIST_PRICE +'</td><td>'+ results[i].SIZE +'</td><td>'+ results[i].COLOR+'</td><td>'+ results[i].IN_STOCK +'</td></tr>';
       	//console.log((i+1)+'|'+results[i].PRODUCT_TYPE+'|'+results[i].SKU+'|'+results[i].BRAND+'|'+results[i].DESCRIPTION);
 	//console.log(table);

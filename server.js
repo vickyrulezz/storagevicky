@@ -109,7 +109,7 @@ app.get("/background", function (req, res) {
 
 
 //GET ALL PRODUCTS - To retrieve all all products call this API ... URL/get_all_products
-app.get('/get_all_products',(req, res) => {
+app.get('/get_all_products',funtion(req, res) => {
 	
 let sql = `select XXPC.COMMODITY_NAME PRODUCT_TYPE, XXSKU.ITEM_NUMBER SKU, XXPS.BRAND ,XXSKU.DESCRIPTION,XXSKU.LONG_DESCRIPTION, 
 XXPR.LIST_PRICE,XXSKU.SKU_ATTRIBUTE_VALUE1 SIZE,XXSKU.SKU_ATTRIBUTE_VALUE2 COLOR,XXPR.IN_STOCK from 
@@ -132,11 +132,11 @@ console.log(sql);
 	
 	for(var i=0; i<results.length; i++){
         table +='<tr><td>'+ (i+1) +'</td><td>'+ results[i].PRODUCT_TYPE +'</td><td>'+ results[i].SKU +'</td><td>'+ results[i].BRAND +'</td><td>'+ results[i].DESCRIPTION +'</td><td>'+ results[i].LONG_DESCRIPTION +'</td><td>'+ results[i].LIST_PRICE +'</td><td>'+ results[i].SIZE +'</td><td>'+ results[i].COLOR+'</td><td>'+ results[i].IN_STOCK +'</td></tr>';
-      	console.log((i+1)+'|'+results[i].PRODUCT_TYPE+'|'+results[i].SKU+'|'+results[i].BRAND+'|'+results[i].DESCRIPTION);
+      	//console.log((i+1)+'|'+results[i].PRODUCT_TYPE+'|'+results[i].SKU+'|'+results[i].BRAND+'|'+results[i].DESCRIPTION);
 	}
       table ='<table border="1" bgcolor=" #ffffcc"><tr><th>Sr No.</th><th>PRODUCT_TYPE</th><th>SKU</th><th>BRAND</th><th>DESCRIPTION</th><th>LONG_DESCRIPTION</th><th>LIST_PRICE</th><th>SIZE</th><th>COLOR</th><th>IN_STOCK</th></tr>'+ table +'</table>';
 	resulthtml = resulthtml.replace('{${table}}', table);
-	
+	console.log(resulthtml);
     //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
 	//res.render('allproducts.html', { root : VIEWS , data : resulthtml})
 	res.send(resulthtml);

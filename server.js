@@ -22,8 +22,8 @@ var json_data = "";
 //html string that will be send to browser
 var table = "";
 //var resulthtml ='<html><head><title>Kool App - Andromeda Product Page</title></head><body>{${table}}</body></html>';
-var resulthtml ='';
-var searchParam = '';
+var resulthtml ="";
+var searchParam = "";
 
 // Using JSON
 app.use(bodyParser.json());
@@ -111,6 +111,8 @@ app.get("/background", function (req, res) {
 //GET ALL PRODUCTS - To retrieve all all products call this API ... URL/get_all_products
 app.get('/get_all_products',function(req, res) {
 	
+resulthtml ='<html><head><title>Kool App - Andromeda Product Page</title></head><body>{${table}}</body></html>';
+
 let sql = `select XXPC.COMMODITY_NAME PRODUCT_TYPE, XXSKU.ITEM_NUMBER SKU, XXPS.BRAND ,XXSKU.DESCRIPTION,XXSKU.LONG_DESCRIPTION, 
 XXPR.LIST_PRICE,XXSKU.SKU_ATTRIBUTE_VALUE1 SIZE,XXSKU.SKU_ATTRIBUTE_VALUE2 COLOR,XXPR.IN_STOCK from 
 XXIBM_PRODUCT_SKU XXSKU,
@@ -138,8 +140,8 @@ console.log(sql);
         table ='<table border="1" bgcolor=" #ffffcc"><tr><th>Sr No.</th><th>PRODUCT_TYPE</th><th>SKU</th><th>BRAND</th><th>DESCRIPTION</th><th>LONG_DESCRIPTION</th><th>LIST_PRICE</th><th>SIZE</th><th>COLOR</th><th>IN_STOCK</th></tr>'+ table +'</table>';
 	//console.log(table);
 	
-	//resulthtml = resulthtml.replace('{${table}}', table);
-	resulthtml = '<html><head><title>Kool App - Andromeda Product Page</title></head><body> '+ table +' </body></html>'
+	resulthtml = resulthtml.replace('{${table}}', table);
+	//resulthtml = '<html><head><title>Kool App - Andromeda Product Page</title></head><body> '+ table +' </body></html>'
 	console.log(resulthtml);
 	res.send(resulthtml);
   });

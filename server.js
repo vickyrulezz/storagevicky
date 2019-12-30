@@ -109,7 +109,7 @@ app.get("/background", function (req, res) {
 
 
 //GET ALL PRODUCTS - To retrieve all all products call this API ... URL/get_all_products
-app.get('/get_all_products',function(req, res) {
+app.get('/get_all_products',async function(req, res) {
 	
 let sql = `select XXPC.COMMODITY_NAME PRODUCT_TYPE, XXSKU.ITEM_NUMBER SKU, XXPS.BRAND ,XXSKU.DESCRIPTION,XXSKU.LONG_DESCRIPTION, 
 XXPR.LIST_PRICE,XXSKU.SKU_ATTRIBUTE_VALUE1 SIZE,XXSKU.SKU_ATTRIBUTE_VALUE2 COLOR,XXPR.IN_STOCK from 
@@ -136,9 +136,9 @@ console.log(sql);
 	//console.log(table);
 	}
       table ='<table border="1" bgcolor=" #ffffcc"><tr><th>Sr No.</th><th>PRODUCT_TYPE</th><th>SKU</th><th>BRAND</th><th>DESCRIPTION</th><th>LONG_DESCRIPTION</th><th>LIST_PRICE</th><th>SIZE</th><th>COLOR</th><th>IN_STOCK</th></tr>'+ table +'</table>';
-	console.log(table);
-	resulthtml = resulthtml.replace('{${table}}', table);
-	//console.log(resulthtml);
+	//console.log(table);
+	resulthtml = await resulthtml.replace('{${table}}', table);
+	console.log(resulthtml);
     //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
 	//res.render('allproducts.html', { root : VIEWS , data : resulthtml})
 	res.send(resulthtml);

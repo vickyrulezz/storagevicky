@@ -68,7 +68,6 @@ app.get('/api/status/db', function (req, res) {
 
 // Getting all the pages/elements
 app.get('/', function (req, res) {
-     table = "";
      res.render('index.html', { root : VIEWS });
 });
 
@@ -110,7 +109,8 @@ app.get("/background", function (req, res) {
 
 //GET ALL PRODUCTS - To retrieve all all products call this API ... URL/get_all_products
 app.get('/get_all_products',function(req, res) {
-	
+
+table = "";
 resulthtml ='<html><head><title>Kool App - Andromeda Product Page</title></head><body>{${table}}</body></html>';
 
 let sql = `select XXPC.COMMODITY_NAME PRODUCT_TYPE, XXSKU.ITEM_NUMBER SKU, XXPS.BRAND ,XXSKU.DESCRIPTION,XXSKU.LONG_DESCRIPTION, 
@@ -131,7 +131,7 @@ OR upper(XXSKU.LONG_DESCRIPTION) like upper('%`+searchParam+`%')
 console.log(sql);
   let query = mysqlClient.query(sql, (err, results, columns) => {
     if(err) throw err;
-	//table = "";
+	
 	for(var i=0; i<results.length; i++){
         table +='<tr><td>'+ (i+1) +'</td><td>'+ results[i].PRODUCT_TYPE +'</td><td>'+ results[i].SKU +'</td><td>'+ results[i].BRAND +'</td><td>'+ results[i].DESCRIPTION +'</td><td>'+ results[i].LONG_DESCRIPTION +'</td><td>'+ results[i].LIST_PRICE +'</td><td>'+ results[i].SIZE +'</td><td>'+ results[i].COLOR+'</td><td>'+ results[i].IN_STOCK +'</td></tr>';
       	//console.log((i+1)+'|'+results[i].PRODUCT_TYPE+'|'+results[i].SKU+'|'+results[i].BRAND+'|'+results[i].DESCRIPTION);

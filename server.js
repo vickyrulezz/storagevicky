@@ -1,4 +1,3 @@
-
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
@@ -22,9 +21,8 @@ var date = new Date();
 var json_data = "";
 //html string that will be send to browser
 var table = "";
+//var resulthtml ='<html><head><title>Kool App - Andromeda Product Page</title></head><body>{${table}}</body></html>';
 var resulthtml ='';
-resulthtml ='<html><head><title>Kool App - Andromeda Product Page</title></head><body>{${table}}</body></html>';
-//var resulthtml ='';
 var searchParam = '';
 
 // Using JSON
@@ -139,14 +137,11 @@ console.log(sql);
       table ='<table border="1" bgcolor=" #ffffcc"><tr><th>Sr No.</th><th>PRODUCT_TYPE</th><th>SKU</th><th>BRAND</th><th>DESCRIPTION</th><th>LONG_DESCRIPTION</th><th>LIST_PRICE</th><th>SIZE</th><th>COLOR</th><th>IN_STOCK</th></tr>'+ table +'</table>';
 	//console.log(table);
 	
-
-  });
-	
-	resulthtml = resulthtml.replace('{${table}}', table);
+	//resulthtml = resulthtml.replace('{${table}}', table);
+	resulthtml = '<html><head><title>Kool App - Andromeda Product Page</title></head><body> '+ table +' </body></html>'
 	console.log(resulthtml);
-    //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
-	//res.render('allproducts.html', { root : VIEWS , data : resulthtml})
 	res.send(resulthtml);
+  });
 });
 
 

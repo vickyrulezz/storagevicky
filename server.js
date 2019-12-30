@@ -105,6 +105,12 @@ app.get("/style", function (req, res) {
 app.get("/background", function (req, res) {
   res.sendFile('background.jpg', { root : VIEWS });
 });
+app.get("/background_animate_css", function (req, res) {
+  res.sendFile('background_animate.css', { root : VIEWS });
+});
+app.get("/background_animate_js", function (req, res) {
+  res.sendFile('background_animate.js', { root : VIEWS });
+});
 
 
 //GET ALL PRODUCTS - To retrieve all all products call this API ... URL/get_all_products

@@ -153,7 +153,7 @@ console.log(sql);
 	
 	resulthtml = resulthtml.replace('{${table}}', table);
   //res.send(resulthtml);
-  res.render('filter.hbs',{filteredData: resulthtml}); // Change
+  res.render('index.html',{filteredData: resulthtml}); // Change
   });
 });
 

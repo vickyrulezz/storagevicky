@@ -152,8 +152,6 @@ console.log(sql);
 	//console.log(table);
 	
 	resulthtml = resulthtml.replace('{${table}}', table);
-	//resulthtml = '<html><head><title>Kool App - Andromeda Product Page</title></head><body> '+ table +' </body></html>'
-	//console.log(resulthtml);
   //res.send(resulthtml);
   res.render('filter.hbs',{filteredData: resulthtml}); // Change
   });

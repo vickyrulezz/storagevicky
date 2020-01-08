@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mysql = require("mysql");
+var hbs = require('hbs');
 
 const http = require('http');
 var fs = require("fs");
@@ -28,6 +29,10 @@ var searchParam = "";
 // Using JSON
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+app.set('view engine', 'hbs');
+app.set('view engine', 'html');
+app.engine('html', require('hbs').__express);
 
 Object.assign=require('object-assign')
 
@@ -148,8 +153,9 @@ console.log(sql);
 	
 	resulthtml = resulthtml.replace('{${table}}', table);
 	//resulthtml = '<html><head><title>Kool App - Andromeda Product Page</title></head><body> '+ table +' </body></html>'
-	console.log(resulthtml);
-	res.send(resulthtml);
+	//console.log(resulthtml);
+  //res.send(resulthtml);
+  res.render('filter.hbs',{filteredData: resulthtml}); // Change
   });
 });
 

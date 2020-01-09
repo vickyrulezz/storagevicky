@@ -152,8 +152,8 @@ console.log(sql);
 	//console.log(table);
 	
 	resulthtml = resulthtml.replace('{${table}}', table);
-  //res.send(resulthtml);
-  res.render('index.html',{filteredData: resulthtml}); // Change
+  res.send(resulthtml);
+  //res.render('index.html',{filteredData: resulthtml}); // Change
   });
 });
 
